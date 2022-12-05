@@ -18,11 +18,14 @@ data class UserData(
     }
 
     override fun describeContents(): Int {
-        TODO("Not yet implemented")
+        return 0
     }
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("Not yet implemented")
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(name)
+        dest.writeString(email)
+        dest.writeString(password)
+        dest.writeString(description)
     }
 
     companion object CREATOR : Parcelable.Creator<UserData> {

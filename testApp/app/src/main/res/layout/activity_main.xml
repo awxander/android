@@ -16,6 +16,7 @@
         android:layout_marginBottom="32dp"
         android:onClick="gotoLoginForm"
         android:text="sign in"
+        android:textColor="#81DCBC"
         app:layout_constraintBottom_toTopOf="@+id/regBtn"
         app:layout_constraintEnd_toEndOf="@+id/regBtn"
         app:layout_constraintHorizontal_bias="0.498"
@@ -28,7 +29,18 @@
         android:layout_marginTop="396dp"
         android:onClick="gotoRegistrationForm"
         android:text="registration"
+        android:textColor="#81DCBC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>

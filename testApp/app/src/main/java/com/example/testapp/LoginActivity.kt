@@ -20,11 +20,17 @@ class LoginActivity : AppCompatActivity() {
             "login" -> {
                 loginBinding = ActivityLoginBinding.inflate(layoutInflater)
                 setContentView(loginBinding.root)
+                loginBinding.button2.setOnClickListener(::signInBtn)
             }
             "registration" -> {
                 regBinding = ActivityRegistrationBinding.inflate(layoutInflater)
                 setContentView(regBinding.root)
-                regBinding.button.setOnClickListener(::registerBtn)
+                regBinding.button.setOnClickListener(::finishRegBtn)
+            }
+            else -> {
+                Log.e("LoginAct", "wrong stringExtra")
+                throw FailedRegistrationException("no extra string with name:" +
+                        " ${intent.getStringExtra("operation")}")
             }
         }
     }
@@ -56,16 +62,32 @@ class LoginActivity : AppCompatActivity() {
         return UserData(name, email, password, description)
     }
 
-    private fun registerBtn(view: View) {
+    private fun finishRegBtn(view: View) {
         try {
             val userData = getData()
             intent.putExtra("userdata", userData)
-            setResult(RESULT_OK)
+            setResult(RESULT_OK, intent)
             finish()
         } catch (e: FailedRegistrationException) {
             Log.e("LoginActLog", "registration failed", e)
         }
     }
+
+    private fun signInBtn(view: View){
+        val userData = intent.getParcelableExtra<UserData>("userData")
+        if(userData == null || userData!!.email != loginBinding.editEmail.text.toString() ||
+                userData!!.password != loginBinding.editTextTextPassword.text.toString())
+        {
+            loginBinding.errorText.visibility = View.VISIBLE
+            loginBinding.errorText.text = "wrong password or email"
+        }else{
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+    }
+
+
+
 
 
 }
