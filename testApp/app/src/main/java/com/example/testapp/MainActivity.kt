@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import com.example.testapp.RequestCodes.LOGIN_REQUEST_CODE
-import com.example.testapp.RequestCodes.REGISTRATION_REQUEST_CODE
+import com.example.testapp.Constance.LOGIN_REQUEST_CODE
+import com.example.testapp.Constance.REGISTRATION_REQUEST_CODE
+import com.example.testapp.Constance.SIGN_IN
+import com.example.testapp.Constance.SIGN_STATE
+import com.example.testapp.Constance.SIGN_UP
+import com.example.testapp.Constance.USER_DATA
 import com.example.testapp.databinding.ActivityMainBinding
 import com.example.testapp.databinding.ActivityProfileBinding
 
@@ -28,15 +32,15 @@ class MainActivity : AppCompatActivity() {
 
     fun gotoLoginForm(view: View) {
         val intent = Intent(this, LoginActivity::class.java)
-        intent.putExtra("operation", "login")
-        intent.putExtra("userData", userData)
+        intent.putExtra(SIGN_STATE, SIGN_IN)
+        intent.putExtra(USER_DATA, userData)
         startActivityForResult(intent, LOGIN_REQUEST_CODE)
     }
 
 
     fun gotoRegistrationForm(view: View) {
         val intent = Intent(this, LoginActivity::class.java)//intent -  намерение
-        intent.putExtra("operation", "registration")
+        intent.putExtra(SIGN_STATE, SIGN_UP)
         startActivityForResult(intent, REGISTRATION_REQUEST_CODE)
     }
 
@@ -71,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     REGISTRATION_REQUEST_CODE -> {
                         profileBinding = ActivityProfileBinding.inflate(layoutInflater)
                         setContentView(profileBinding.root)
-                        userData = data?.getParcelableExtra("userdata")
+                        userData = data?.getParcelableExtra(USER_DATA)
                         setProfileActivity(userData)
                     }
                 }

@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.example.testapp.Constance.SIGN_IN
+import com.example.testapp.Constance.SIGN_STATE
+import com.example.testapp.Constance.SIGN_UP
+import com.example.testapp.Constance.USER_DATA
 import com.example.testapp.databinding.ActivityLoginBinding
 import com.example.testapp.databinding.ActivityRegistrationBinding
 import com.example.testapp.exceptions.FailedRegistrationException
@@ -16,21 +20,21 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        when (intent.getStringExtra("operation")) {
-            "login" -> {
+        when (intent.getStringExtra(SIGN_STATE)) {
+            SIGN_IN -> {
                 loginBinding = ActivityLoginBinding.inflate(layoutInflater)
                 setContentView(loginBinding.root)
                 loginBinding.button2.setOnClickListener(::signInBtn)
             }
-            "registration" -> {
+            SIGN_UP -> {
                 regBinding = ActivityRegistrationBinding.inflate(layoutInflater)
                 setContentView(regBinding.root)
                 regBinding.button.setOnClickListener(::finishRegBtn)
             }
             else -> {
-                Log.e("LoginAct", "wrong stringExtra")
-                throw FailedRegistrationException("no extra string with name:" +
-                        " ${intent.getStringExtra("operation")}")
+                Log.e(packageName, R.string.no_such_extra.toString())
+                throw FailedRegistrationException(R.string.no_such_extra.toString() +
+                        intent.getStringExtra(SIGN_STATE))
             }
         }
     }
@@ -52,11 +56,11 @@ class LoginActivity : AppCompatActivity() {
         val checkPassword = regBinding.checkPassword.text.toString()
 
         if (password != checkPassword) {
-            errorMess = "password and reentered password doesn't match"
+            errorMess = R.string.wrong_reentered_password.toString()
             regFailed(errorMess)
         }
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            errorMess = "one of necessary fields is empty"
+            errorMess = R.string.empty_field_err_message.toString()
             regFailed(errorMess)
         }
         return UserData(name, email, password, description)
@@ -65,16 +69,16 @@ class LoginActivity : AppCompatActivity() {
     private fun finishRegBtn(view: View) {
         try {
             val userData = getData()
-            intent.putExtra("userdata", userData)
+            intent.putExtra(USER_DATA, userData)
             setResult(RESULT_OK, intent)
             finish()
         } catch (e: FailedRegistrationException) {
-            Log.e("LoginActLog", "registration failed", e)
+            Log.e(packageName, R.string.reg_failed_mes.toString(), e)
         }
     }
 
     private fun signInBtn(view: View){
-        val userData = intent.getParcelableExtra<UserData>("userData")
+        val userData = intent.getParcelableExtra<UserData>(USER_DATA)
         if(userData == null || userData!!.email != loginBinding.editEmail.text.toString() ||
                 userData!!.password != loginBinding.editTextTextPassword.text.toString())
         {

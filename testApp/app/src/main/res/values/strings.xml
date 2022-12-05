@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">testApp</string>
-    <string name="check_wtf">gocha 2.0, </string>
+    <string name="sign_in" translatable="false">sign in</string>
+    <string name="sign_up">sign up</string>
+    <string name="name">name</string>
+    <string name="email">email</string>
+    <string name="description">description</string>
+    <string name="password">password</string>
+    <string name="check_password">check password</string>
+    <string name="empty_field_err_message">"one of necessary fields is empty"</string>
+    <string name="wrong_reentered_password">"password and reentered password doesn't match"</string>
+    <string name="reg_failed_mes">"registration failed"</string>
+    <string name="no_such_extra">"no extra string with name: "</string>
+
+
+
 </resources>

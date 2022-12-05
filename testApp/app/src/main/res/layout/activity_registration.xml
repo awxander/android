@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="enter your name"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
 
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="enter your email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textSize="24sp" />
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="enter password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textSize="24sp" />
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="reenter password(check)"
+                android:hint="@string/check_password"
                 android:inputType="textPassword"
                 android:textSize="24sp" />
 
@@ -99,7 +99,7 @@
                 android:id="@+id/editDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="description"
+                android:hint="@string/description"
                 android:textSize="24sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -140,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="register" />
+                android:text="@string/sign_up" />
 
             <Space
                 android:layout_width="match_parent"
